@@ -9,6 +9,7 @@ class PhotosController < ApplicationController
   end
 
   def create
+    sleep(3)
     @photo = Photo.new
     @photo.file = params[:file] if params.has_key?(:file)
 

@@ -1,0 +1,21 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+
+%h1 Multiple file uploader queue
+
+-['gears', 'silverlight', 'flash', 'html5', 'browserplus'].each do |runtime|
+  %div.runtime{:class => runtime}
+    %h3=runtime
+
+    %div.queue
+      %div.info
+        %div
+          max file size
+          =number_to_human_size(2.megabytes)
+        %div
+          allowed file types:
+          jpg, gif, png, jpeg
+
+      -javascript_tag do
+        =render :partial => 'plupload_queue.js', :locals => {:runtime => runtime}
+    %div.clear

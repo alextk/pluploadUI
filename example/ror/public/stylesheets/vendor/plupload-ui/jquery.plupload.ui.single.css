@@ -56,3 +56,5 @@ div.pluploadUI.singleFile {
     color: #bbbbbb;
     border-color: #bbbbbb;
     cursor: default; }
+  div.pluploadUI.singleFile.noRuntimeAvailable div.choose {
+    display: none; }

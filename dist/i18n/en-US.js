@@ -4,7 +4,7 @@ $.pluploadUI.i18n.register('en-US', {
   },
   messages: {
     intro: 'Click on button to upload file',
-    uploading: 'Uploading file...',
+    uploading: 'Uploading files...',
     success: 'File successfully uploaded!'
   },
   errors: {
@@ -13,28 +13,20 @@ $.pluploadUI.i18n.register('en-US', {
     fileSize: 'File size of %{size} exceeds maximum of %{max}',
     fileExtension: 'File extension is not allowed'
   },
-
-    'Select files' : 'בחירת קבצים',
-    'Add files to the upload queue and click the start button.' : 'הוסיפו קבצים לטבלה ולחצו על כפתור התחל',
-    'Filename' : 'שם קובץ',
-    'Status' : 'סטטוס',
-    'Size' : 'גודל',
-    'Add files' : 'הוספת קבצים',
-    'Stop current upload' : 'עצירת העלאה',
-    'Start uploading queue' : 'התחלת העלאה',
-    'Uploaded {0}/{1} files': 'הועלו {0} מתוך {1} קבצים',
-    'N/A' : 'לא זמין',
-    'Drag files here.' : 'ניתן לגרור קבצים לכאן',
-    'File extension error.': 'סוג קובץ לא מורשה',
-    'File size error.': 'גודל הקובץ חורג מהגודל המקסימלי המותר',
-    'Init error.': 'שגיאת איתחול',
-    'HTTP Error.': 'שגיאת HTTP',
-    'Security error.': 'שגיאת אבטחה',
-    'Generic error.': 'שגיאה כללית',
-    'IO error.': 'שגיאת תקשורת',
-    'Uploading files': 'מעלה קבצים...',
-    'Upload completed!': 'העלאה הסתיימה!',
-    'Choose file': 'בחירת קובץ',
-    'Uploading file...': 'מעלה קובץ...',
-    'File upload completed successfully': 'קובץ הועלה בהצלחה'
+  queue: {
+    header: {
+      name: 'File name',
+      size: 'Size',
+      status: 'Status'
+    },
+    messages: {
+      uploading: 'Uploading files...',
+      success: 'Upload complete.'
+    },
+    footer: {
+      uploaded: 'Uploaded %{uploaded}/%{total} files',
+      stop: 'Stop upload',
+      clear: 'Clear completed'
+    }
+  }
 });

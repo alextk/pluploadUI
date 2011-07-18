@@ -1,16 +1,3 @@
-/*
-* jqI18n - jQuery plugin for rendering dialog
-*
-* Version: 0.0.1a
-* Copyright 2011 Alex Tkachev
-*
-* Dual licensed under MIT or GPLv2 licenses
-*   http://en.wikipedia.org/wiki/MIT_License
-*   http://en.wikipedia.org/wiki/GNU_General_Public_License
-*
-* Date: Sun Jul 17 19:48:23 2011 +0300
-*/
-
 (function($) {
 
   /**
@@ -43,12 +30,14 @@
       var path = key.split('.');
       var result = object;
       for (var i = 0; i < path.length - 1; i++) {
-        result = object[path[i]];
+        result = result[path[i]];
         if ($.type(result) != 'object') return key;
       }
       result = result[path[path.length - 1]];
 
-      if (typeof result == 'undefined') return key;
+      if (typeof result == 'undefined'){ //no translation has been found --> return key
+        return key;
+      }
 
       //do params substitution
       if (arguments.length == 2 && $.type(params) == 'object') {

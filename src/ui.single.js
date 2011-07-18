@@ -76,7 +76,7 @@
       uploader.bind('Error', function(up, err){
         var message = null;
         if(err.code == plupload.INIT_ERROR){ //triggered when no runtime can be initialized
-          self.el.addClass('disabled');
+          self.el.addClass('noRuntimeAvailable');
         }
         else if(err.code == plupload.FILE_SIZE_ERROR){
           message = $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code), {size: plupload.formatSize(err.file.size), max: plupload.formatSize(up.settings.max_file_size)});

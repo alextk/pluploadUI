@@ -8,7 +8,8 @@ EXAMPLE_DIR = ${PREFIX}/example/ror
 JS_FILES = license.txt\
 	${SRC_DIR}/base.js\
 	${SRC_DIR}/i18n.js\
-	${SRC_DIR}/ui.single.js
+	${SRC_DIR}/ui.single.js\
+	${SRC_DIR}/ui.queue.js
 
 JS = ${DIST_DIR}/jquery.plupload.ui.js
 JS_MIN = ${DIST_DIR}/jquery.plupload.ui.min.js

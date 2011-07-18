@@ -14,4 +14,12 @@ class ExamplesController < ApplicationController
     end
   end
 
+  def queue
+    @project = Project.last
+    if(@project.nil?)
+      @project = Project.new(:name => 'project 1')
+      @project.save
+    end
+  end
+
 end

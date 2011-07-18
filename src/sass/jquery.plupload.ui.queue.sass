@@ -1,0 +1,95 @@
+div.pluploadUI.queue
+  color: #333
+  font-size: 13px
+
+  div.noruntime
+    display: none
+    color: red
+    padding: 5px 10px
+    border: 1px solid red
+    background-color: #FFE4E8
+
+  div.choose
+    padding: 5px 0px
+    div.button
+      float: left
+      margin-right: 20px
+      padding: 10px
+      font-weight: bold
+      border: 1px solid #aaa
+      background-color: #efefef
+      cursor: pointer
+    div.info
+
+
+  div.filesList
+    div.header, div.file, div.footer
+      padding: 5px
+      border-bottom: 1px solid #aaa
+      div.name
+        float: left
+      div.size, div.progress
+        float: right
+        padding: 0px 5px
+        direction: ltr
+        text-align: center
+      div.size
+        width: 60px
+      div.progress
+        width: 50px
+
+    div.header, div.footer
+      background-color: #444444
+      color: white
+      padding-right: 22px
+    div.files
+      background-color: #EFEFEF
+      height: 100px
+      overflow-x: hidden
+      overflow-y: scroll
+      div.file
+        div.error
+          color: red
+          font-size: 12px
+          margin-top: 3px
+        &.failed
+          background-color: #FFE4E8
+        &.done
+          background-color: #ECFBEC
+          color: #005300
+
+    div.footer
+      div.uploading, div.complete
+        display: none
+      a.button
+        text-decoration: underline
+        color: white
+        margin: 0px 15px
+  div.debug
+    display: none
+
+  &.uploading
+    div.filesList
+      div.footer
+        div.uploading
+          display: block
+
+  &.uploadComplete
+    div.filesList
+      div.footer
+        div.complete
+          display: block
+
+  &.noRuntimeAvailable
+    div.noruntime
+      display: block
+    div.choose, div.filesList
+      display: none
+
+  &.disabled
+    div.choose
+      div.button
+        cursor: normal
+        color: #BBB
+        border-color: #BBB
+        cursor: default

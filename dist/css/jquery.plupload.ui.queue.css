@@ -1,0 +1,72 @@
+div.pluploadUI.queue {
+  color: #333333;
+  font-size: 13px; }
+  div.pluploadUI.queue div.noruntime {
+    display: none;
+    color: red;
+    padding: 5px 10px;
+    border: 1px solid red;
+    background-color: #ffe4e8; }
+  div.pluploadUI.queue div.choose {
+    padding: 5px 0px; }
+    div.pluploadUI.queue div.choose div.button {
+      float: left;
+      margin-right: 20px;
+      padding: 10px;
+      font-weight: bold;
+      border: 1px solid #aaaaaa;
+      background-color: #efefef;
+      cursor: pointer; }
+  div.pluploadUI.queue div.filesList div.header, div.pluploadUI.queue div.filesList div.file, div.pluploadUI.queue div.filesList div.footer {
+    padding: 5px;
+    border-bottom: 1px solid #aaaaaa; }
+    div.pluploadUI.queue div.filesList div.header div.name, div.pluploadUI.queue div.filesList div.file div.name, div.pluploadUI.queue div.filesList div.footer div.name {
+      float: left; }
+    div.pluploadUI.queue div.filesList div.header div.size, div.pluploadUI.queue div.filesList div.header div.progress, div.pluploadUI.queue div.filesList div.file div.size, div.pluploadUI.queue div.filesList div.file div.progress, div.pluploadUI.queue div.filesList div.footer div.size, div.pluploadUI.queue div.filesList div.footer div.progress {
+      float: right;
+      padding: 0px 5px;
+      direction: ltr;
+      text-align: center; }
+    div.pluploadUI.queue div.filesList div.header div.size, div.pluploadUI.queue div.filesList div.file div.size, div.pluploadUI.queue div.filesList div.footer div.size {
+      width: 60px; }
+    div.pluploadUI.queue div.filesList div.header div.progress, div.pluploadUI.queue div.filesList div.file div.progress, div.pluploadUI.queue div.filesList div.footer div.progress {
+      width: 50px; }
+  div.pluploadUI.queue div.filesList div.header, div.pluploadUI.queue div.filesList div.footer {
+    background-color: #444444;
+    color: white;
+    padding-right: 22px; }
+  div.pluploadUI.queue div.filesList div.files {
+    background-color: #efefef;
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: scroll; }
+    div.pluploadUI.queue div.filesList div.files div.file div.error {
+      color: red;
+      font-size: 12px;
+      margin-top: 3px; }
+    div.pluploadUI.queue div.filesList div.files div.file.failed {
+      background-color: #ffe4e8; }
+    div.pluploadUI.queue div.filesList div.files div.file.done {
+      background-color: #ecfbec;
+      color: #005300; }
+  div.pluploadUI.queue div.filesList div.footer div.uploading, div.pluploadUI.queue div.filesList div.footer div.complete {
+    display: none; }
+  div.pluploadUI.queue div.filesList div.footer a.button {
+    text-decoration: underline;
+    color: white;
+    margin: 0px 15px; }
+  div.pluploadUI.queue div.debug {
+    display: none; }
+  div.pluploadUI.queue.uploading div.filesList div.footer div.uploading {
+    display: block; }
+  div.pluploadUI.queue.uploadComplete div.filesList div.footer div.complete {
+    display: block; }
+  div.pluploadUI.queue.noRuntimeAvailable div.noruntime {
+    display: block; }
+  div.pluploadUI.queue.noRuntimeAvailable div.choose, div.pluploadUI.queue.noRuntimeAvailable div.filesList {
+    display: none; }
+  div.pluploadUI.queue.disabled div.choose div.button {
+    cursor: normal;
+    color: #bbbbbb;
+    border-color: #bbbbbb;
+    cursor: default; }
