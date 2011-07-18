@@ -3,10 +3,16 @@
 
 %h1 Multiple file uploader queue
 
+%div.photosList
+  %h3 Project photos list
+  %ul.photos
+    -@project.photos.each do |photo|
+      =render :partial => 'photo', :locals => {:photo => photo}
+    %div.end.clear
+
 -['gears', 'silverlight', 'flash', 'html5', 'browserplus'].each do |runtime|
   %div.runtime{:class => runtime}
     %h3=runtime
-
     %div.queue
       %div.info
         %div

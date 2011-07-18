@@ -1,0 +1,8 @@
+%li.photo{'data-id' => photo.id}
+  %div
+    =link_to photo.file.url do
+      =image_tag photo.file.url(:thumb)
+  %div.admin.toolbar.photo.delete
+    =link_to 'X', photo_path(photo), :class => 'button3 red', :method => :delete, :remote => true
+
+

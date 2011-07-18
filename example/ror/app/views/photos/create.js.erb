@@ -9,6 +9,7 @@
 
 <% else %>
 
-  jQuery('div.photo').replaceWith("<%= escape_javascript(render(:partial => "examples/photo", :locals => {:photo => @photo})) %>");
+  jQuery('div.photo.article').replaceWith("<%= escape_javascript(render(:partial => "single/photo", :locals => {:photo => @photo})) %>");
+  jQuery("<%= escape_javascript(render(:partial => "queue/photo", :locals => {:photo => @photo})) %>").insertBefore(jQuery('div.photosList div.clear.end')).hide().fadeIn('slow');
 
 <% end %>

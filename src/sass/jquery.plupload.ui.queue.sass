@@ -59,12 +59,12 @@ div.pluploadUI.queue
           color: #005300
 
     div.footer
-      div.uploading, div.complete
+      div.uploading, div.complete, div.stopped, div.start
         display: none
       a.button
         text-decoration: underline
         color: white
-        margin: 0px 15px
+        margin-left: 15px
   div.debug
     display: none
 
@@ -78,6 +78,18 @@ div.pluploadUI.queue
     div.filesList
       div.footer
         div.complete
+          display: block
+
+  &.stopped
+    div.filesList
+      div.footer
+        div.stopped
+          display: block
+
+  &.start
+    div.filesList
+      div.footer
+        div.start
           display: block
 
   &.noRuntimeAvailable

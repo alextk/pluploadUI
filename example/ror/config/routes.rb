@@ -5,6 +5,8 @@ Ror::Application.routes.draw do
   root :to => "examples#index"
 
   resources :photos, :only => [:index, :create, :destroy]
+  resource :single, :controller => :single, :only => [:show]
+  resource :queue, :controller => :queue, :only => [:show]
 
   resources :examples, :only => [:index] do
     get :single, :queue, :on => :collection

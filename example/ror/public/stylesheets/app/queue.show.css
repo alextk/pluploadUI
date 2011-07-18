@@ -1,0 +1,35 @@
+div.photosList {
+  margin-bottom: 15px;
+  border-bottom: 1px dashed #333333; }
+  div.photosList ul.photos {
+    margin: 0px;
+    padding: 0px; }
+    div.photosList ul.photos li.photo {
+      border: 1px solid #aaaaaa;
+      padding: 10px;
+      list-style-type: none;
+      float: left;
+      margin: 4px 4px;
+      position: relative; }
+      div.photosList ul.photos li.photo div.admin.toolbar.photo.delete {
+        background-color: transparent;
+        padding: 0px;
+        position: absolute;
+        top: 0px;
+        right: 0px; }
+        div.photosList ul.photos li.photo div.admin.toolbar.photo.delete a.button3 {
+          border: 1px solid black;
+          background-color: #333333;
+          color: white;
+          text-decoration: none;
+          margin: 0px;
+          padding: 0px 5px;
+          height: 25px;
+          line-height: 25px; }
+
+div.runtime {
+  border-bottom: 1px dashed #333333;
+  padding-bottom: 20px; }
+  div.runtime div.queue {
+    float: left;
+    width: 600px; }

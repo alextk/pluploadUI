@@ -1,5 +1,8 @@
 (function($) {
 
+  var delay = window.setTimeout;
+  var delayPeriod = 20;
+
   var statusesCssHash = {};
   $.each(['done', 'failed', 'queued', 'uploading'], function(i, item){
     statusesCssHash[plupload[item.toUpperCase()]] = item;
@@ -41,6 +44,9 @@
             '<div class="files"/>' +
             '<div class="footer">' +
               '<div class="name">' +
+                '<div class="start">' +
+                  '<a class="button start" href="javascript:;" style="display: none">'+$.pluploadUI.i18n.t('queue.footer.start')+'</a>' +
+                '</div>' +
                 '<div class="uploading">' +
                   '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.uploading')+'</span> ' +
                   '<a class="button stop" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.stop')+'</a>' +
@@ -48,6 +54,12 @@
                 '<div class="complete">' +
                   '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.success')+'</span> ' +
                   '<span class="uploaded"/>' +
+                  '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.clear')+'</a>' +
+                '</div>'+
+                '<div class="stopped">' +
+                  '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.stopped')+'</span> ' +
+                  '<span class="uploaded"/>' +
+                  '<a class="button resume" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.resume')+'</a>' +
                   '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.clear')+'</a>' +
                 '</div>'+
               '</div>'+
@@ -73,9 +85,15 @@
       $('a.button.stop', divQueue).click(function(e) {
         e.preventDefault();
         self.uploader.stop();
+        self.el.addClass('stopped');
+      });
+      $('a.button.resume, a.button.start', divQueue).click(function(e) {
+        e.preventDefault();
+        self.uploader.start();
       });
       $('a.button.clear', divQueue).click(function(e) {
         e.preventDefault();
+        self._clearCompleted();
       });
 
       return divQueue.appendTo(target);
@@ -90,24 +108,24 @@
       });
 
       uploader.bind("FilesAdded", function(up, files){
-        $.each(files, function(i, file) {
-          $('div.filesList div.files', self.el).append(
-                  $('<div class="file"/>').attr('id', file.id).append(
-                          $('<div class="name"/>').html(file.name),
-                          $('<div class="progress"/>').html('0%'),
-                          $('<div class="size"/>').html(plupload.formatSize(file.size)),
-                          $('<div class="clear"/>'),
-                          $('<div class="error"/>')
-                  )
-          );
-          if(self.filesErrorsOnAdd[file.id]){
-            self._handleFileStatus(file, self.filesErrorsOnAdd[file.id].message);
-          }
-        });
+        delay(function(){ //the timeout needed because the file isn't yet added to files collection of the uploader on some runtimes, and it has no files to upload
+          $.each(files, function(i, file) {
+            $('div.filesList div.files', self.el).append(
+                    $('<div class="file"/>').attr('id', file.id).append(
+                            $('<div class="name"/>').html(file.name),
+                            $('<div class="progress"/>').html('0%'),
+                            $('<div class="size"/>').html(plupload.formatSize(file.size)),
+                            $('<div class="clear"/>'),
+                            $('<div class="error"/>')
+                    )
+            );
+            if(self.filesErrorsOnAdd[file.id]){
+              self._handleFileStatus(file, self.filesErrorsOnAdd[file.id].message);
+            }
+          });
 
-        up.refresh(); // Reposition Flash/Silverlight
+          up.refresh(); // Reposition Flash/Silverlight
 
-        setTimeout(function(){ //the timeout needed because the file isn't yet added to files collection of the uploader on some runtimes, and it has no files to upload
           var start = false;
           for(var i=0; i<up.files.length; i++){
             if(up.files[i].status == plupload.QUEUED) {
@@ -117,69 +135,77 @@
           }
 
           self._updateTotals();
-          
+
           if(start) up.start();
-        }, 300);
+        }, delayPeriod);
       });
 
       uploader.bind('Error', function(up, err){
-        var message = null;
-        if(err.code == plupload.INIT_ERROR){ //triggered when no runtime can be initialized
-          self.el.addClass('noRuntimeAvailable');
-          $('div.noruntime', self.el).html($.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message);
-        }
-        else if(err.code == plupload.FILE_SIZE_ERROR){
-          message = $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code), {size: plupload.formatSize(err.file.size), max: plupload.formatSize(up.settings.max_file_size)});
-        }
-        if(message == null){
-          message = $.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message;
-        }
+        delay(function(){
+          var message = null;
+          if(err.code == plupload.INIT_ERROR){ //triggered when no runtime can be initialized
+            self.el.addClass('noRuntimeAvailable');
+            $('div.noruntime', self.el).html($.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message);
+          }
+          else if(err.code == plupload.FILE_SIZE_ERROR){
+            message = $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code), {size: plupload.formatSize(err.file.size), max: plupload.formatSize(up.settings.max_file_size)});
+          }
+          if(message == null){
+            message = $.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message;
+          }
 
-        var file = err.file;
-        if(file){
-          file.status = plupload.FAILED;
-          self._handleFileStatus(file, message);
-        }
+          var file = err.file;
+          if(file){
+            file.status = plupload.FAILED;
+            self._handleFileStatus(file, message);
+          }
+        }, delayPeriod);
       });
 
       uploader.bind('StateChanged', function() {
-        if (uploader.state === plupload.STARTED) {
-          self.el.addClass('uploading disabled');
-          self.el.removeClass('uploadComplete');
-        } else if (uploader.state === plupload.STOPPED){
-          self.el.removeClass('uploading disabled');
-        }
+        delay(function(){
+          if (uploader.state === plupload.STARTED) {
+            self.el.addClass('uploading disabled');
+            self.el.removeClass('uploadComplete stopped start');
+          } else if (uploader.state === plupload.STOPPED){
+            self.el.removeClass('uploading disabled');
+          }
+        }, delayPeriod);
       });
 
       uploader.bind('FileUploaded', function(up, file, response) {
-        var evalResult = eval(response.response);
-        var errorMessage = null;
-        if(evalResult && evalResult.error === true){ //ERROR
-          file.status = plupload.FAILED;
-          errorMessage = evalResult.message;
-        }
-        self.debug('FileUploaded: ' + file.name + ', response:' + evalResult);
+        delay(function(){
+          var evalResult = eval(response.response);
+          var errorMessage = null;
+          if(evalResult && evalResult.error === true){ //ERROR
+            file.status = plupload.FAILED;
+            errorMessage = evalResult.message;
+          } else if(file.status == plupload.DONE){
+            self._updateFileProgress(file);
+          }
+          self.debug('FileUploaded: ' + file.name + ', response:' + evalResult);
 
-        self._handleFileStatus('error', errorMessage);
+          self._handleFileStatus(file, errorMessage);
 
-        self._updateTotals();
+          self._updateTotals();
+        }, delayPeriod);
       });
 
       uploader.bind('UploadComplete', function(up, file) {
-        self.el.removeClass('uploading');
-        self.el.addClass('uploadComplete');
+        delay(function(){
+          self.el.removeClass('uploading');
+          self.el.addClass('uploadComplete');
 
-        self._updateTotals();
+          self._updateTotals();
+        }, delayPeriod);
       });
 
       uploader.bind("UploadProgress", function(up, file) {
-        var divFile = $('#'+file.id);
-        // Set file specific progress
-        $('div.progress', divFile).html(file.percent + '%');
-
-        self._handleFileStatus(file);
-
-        self._updateTotals();
+        delay(function(){
+          self._updateFileProgress(file);
+          self._handleFileStatus(file);
+          self._updateTotals();
+        }, delayPeriod);
       });
     },
 
@@ -194,6 +220,12 @@
         }
     },
 
+    // Set file specific progress
+    _updateFileProgress: function(file){
+      var divFile = $('#'+file.id);
+      $('div.progress', divFile).html(file.percent + '%');
+    },
+
     _updateTotals: function() {
       $('div.footer div.progress', this.el).html(this.uploader.total.percent + '%');
       //var sizeToUpload = 0;
@@ -201,6 +233,38 @@
       //$('div.footer div.size', target).html(plupload.formatSize(uploader.total.size) + ' / ' + plupload.formatSize(sizeToUpload));
       $('div.footer div.size', this.el).html(plupload.formatSize(this.uploader.total.size));
       $('div.footer div.name span.uploaded', this.el).html($.pluploadUI.i18n.t('queue.footer.uploaded', {uploaded: this.uploader.total.uploaded, total: this.uploader.files.length}));
+    },
+
+    _clearCompleted: function(){
+      var self = this;
+      var filesToRemove = [];
+      $.each(this.uploader.files, function(i, file){
+        if(file.status == plupload.DONE || file.status == plupload.FAILED){
+          filesToRemove.push(file);
+        }
+      });
+      $.each(filesToRemove, function(i, file){
+        var divFile = $('#'+file.id);
+        self.uploader.removeFile(file);
+        divFile.remove();
+      });
+      //remove files that aren't in uploader (files that had error on add)
+      $('div.files div.file.failed', this.el).remove();
+
+      this.el.removeClass('uploadComplete stopped');
+      this._showStart();
+      this._updateTotals();
+    },
+
+    _showStart: function(){
+      this.el.addClass('start');
+      var queued = false;
+      $.each(this.uploader.files, function(i, file){
+        if(file.status == plupload.QUEUED){
+          queued = true;
+        }
+      });
+      $('a.button.start', this.el).toggle(queued);
     },
 
     debug: function(message){

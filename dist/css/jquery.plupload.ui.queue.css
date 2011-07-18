@@ -49,17 +49,21 @@ div.pluploadUI.queue {
     div.pluploadUI.queue div.filesList div.files div.file.done {
       background-color: #ecfbec;
       color: #005300; }
-  div.pluploadUI.queue div.filesList div.footer div.uploading, div.pluploadUI.queue div.filesList div.footer div.complete {
+  div.pluploadUI.queue div.filesList div.footer div.uploading, div.pluploadUI.queue div.filesList div.footer div.complete, div.pluploadUI.queue div.filesList div.footer div.stopped, div.pluploadUI.queue div.filesList div.footer div.start {
     display: none; }
   div.pluploadUI.queue div.filesList div.footer a.button {
     text-decoration: underline;
     color: white;
-    margin: 0px 15px; }
+    margin-left: 15px; }
   div.pluploadUI.queue div.debug {
     display: none; }
   div.pluploadUI.queue.uploading div.filesList div.footer div.uploading {
     display: block; }
   div.pluploadUI.queue.uploadComplete div.filesList div.footer div.complete {
+    display: block; }
+  div.pluploadUI.queue.stopped div.filesList div.footer div.stopped {
+    display: block; }
+  div.pluploadUI.queue.start div.filesList div.footer div.start {
     display: block; }
   div.pluploadUI.queue.noRuntimeAvailable div.noruntime {
     display: block; }

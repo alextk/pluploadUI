@@ -21,12 +21,15 @@ $.pluploadUI.i18n.register('en-US', {
     },
     messages: {
       uploading: 'Uploading files...',
-      success: 'Upload complete.'
+      success: 'Upload complete.',
+      stopped: 'Upload stopped.'
     },
     footer: {
       uploaded: 'Uploaded %{uploaded}/%{total} files',
       stop: 'Stop',
-      clear: 'Clear completed'
+      clear: 'Clear completed',
+      resume: 'Resume',
+      start: 'Start'
     }
   }
 });
