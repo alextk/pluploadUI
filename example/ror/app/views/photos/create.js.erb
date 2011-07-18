@@ -1,0 +1,14 @@
+<% if @photo.errors.any? %>
+
+(function(){
+  return {
+    error: true,
+    message: "<%= @photo.errors.full_messages.uniq.join(',') %>"
+  }
+})();
+
+<% else %>
+
+  jQuery('div.photo').replaceWith("<%= escape_javascript(render(:partial => "examples/photo", :locals => {:photo => @photo})) %>");
+
+<% end %>

@@ -1,0 +1,14 @@
+body div.clear {
+  clear: both; }
+body img {
+  border: 0px; }
+body div.alert {
+  border: 1px solid red;
+  padding: 10px;
+  background-color: pink;
+  color: red; }
+body div.notice {
+  border: 1px solid green;
+  padding: 10px;
+  background-color: #90ee90;
+  color: #333333; }

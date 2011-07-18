@@ -1,0 +1,67 @@
+div.pluploadUI.singleFile
+  color: #333
+  font-size: 13px
+  font-family: Arial, Helvetica, serif
+  padding: 0px 10px
+  //width: 300px
+  //min-height: 100px
+  div.messages
+    div.message
+      border: 1px solid transparent
+      padding: 5px 10px
+      &.intro
+        color: #666
+        border-color: #666
+        background-color: #efefef
+      &.uploading
+        color: #3D638F
+        border-color: #3D638F
+        background-color: #D7E0EA
+        span.icon
+          background: transparent url(images/spinner-16x16.gif) no-repeat left center
+          padding-left: 20px
+      &.error
+        color: red
+        border-color: red
+        background-color: #FFE4E8
+      &.success
+        background-color: #ECFBEC
+        color: #005300
+        border-color: #85B885
+  div.choose
+    padding: 5px 0px
+    height: 50px
+    div.button
+      float: left
+      margin-right: 20px
+      padding: 10px
+      font-weight: bold
+      border: 1px solid #aaa
+      background-color: #efefef
+      cursor: pointer
+    div.info
+
+  div.debug
+    display: none
+    direction: ltr
+    border: 1px solid #AAA
+    padding: 5px
+    h5
+      padding: 0px
+      margin: 0px
+      font-size: 14px
+      font-weight: bold
+      text-decoration: underline
+    div
+      margin-left: 10px
+
+  div.plupload
+    direction: ltr
+
+  &.disabled
+    div.choose
+      div.button
+        cursor: normal
+        color: #BBB
+        border-color: #BBB
+        cursor: default

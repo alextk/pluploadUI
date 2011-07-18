@@ -1,0 +1,58 @@
+div.pluploadUI.singleFile {
+  color: #333333;
+  font-size: 13px;
+  font-family: Arial, Helvetica, serif;
+  padding: 0px 10px; }
+  div.pluploadUI.singleFile div.messages div.message {
+    border: 1px solid transparent;
+    padding: 5px 10px; }
+    div.pluploadUI.singleFile div.messages div.message.intro {
+      color: #666666;
+      border-color: #666666;
+      background-color: #efefef; }
+    div.pluploadUI.singleFile div.messages div.message.uploading {
+      color: #3d638f;
+      border-color: #3d638f;
+      background-color: #d7e0ea; }
+      div.pluploadUI.singleFile div.messages div.message.uploading span.icon {
+        background: transparent url(images/spinner-16x16.gif) no-repeat left center;
+        padding-left: 20px; }
+    div.pluploadUI.singleFile div.messages div.message.error {
+      color: red;
+      border-color: red;
+      background-color: #ffe4e8; }
+    div.pluploadUI.singleFile div.messages div.message.success {
+      background-color: #ecfbec;
+      color: #005300;
+      border-color: #85b885; }
+  div.pluploadUI.singleFile div.choose {
+    padding: 5px 0px;
+    height: 50px; }
+    div.pluploadUI.singleFile div.choose div.button {
+      float: left;
+      margin-right: 20px;
+      padding: 10px;
+      font-weight: bold;
+      border: 1px solid #aaaaaa;
+      background-color: #efefef;
+      cursor: pointer; }
+  div.pluploadUI.singleFile div.debug {
+    display: none;
+    direction: ltr;
+    border: 1px solid #aaaaaa;
+    padding: 5px; }
+    div.pluploadUI.singleFile div.debug h5 {
+      padding: 0px;
+      margin: 0px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: underline; }
+    div.pluploadUI.singleFile div.debug div {
+      margin-left: 10px; }
+  div.pluploadUI.singleFile div.plupload {
+    direction: ltr; }
+  div.pluploadUI.singleFile.disabled div.choose div.button {
+    cursor: normal;
+    color: #bbbbbb;
+    border-color: #bbbbbb;
+    cursor: default; }

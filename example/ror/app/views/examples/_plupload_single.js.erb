@@ -1,0 +1,27 @@
+<% session_key_name = Rails.application.config.session_options[:key] %>
+
+(function(){
+
+  var container = jQuery('<%= "div.#{runtime} div.single" %>');
+
+  container.pluploadUI({
+    type: 'single',
+    browse: {cls: 'button3 green'},
+    uploader: {
+      runtimes : '<%= runtime %>',
+      url : '<%= photos_path(@article, :format => 'js', :photoable_id => @article.id, :photoable_type => @article.class.to_s) %>',
+      flash_swf_url : '/javascripts/vendor/plupload/plupload.flash.swf',
+      silverlight_xap_url : '/javascripts/vendor/plupload/plupload.silverlight.xap',
+      max_file_size: '2mb',
+      multipart_params: {
+        '_http_accept': 'application/javascript',
+        'authenticity_token' : '<%= form_authenticity_token %>',
+        '<%= session_key_name %>' : encodeURIComponent('<%= u cookies[session_key_name] %>')
+      },
+      filters : [
+        {title : "Image files", extensions : "gif,jpg,png,jpeg,bmp"}
+      ]
+    }
+  });
+
+})();

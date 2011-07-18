@@ -1,0 +1,6 @@
+%div.photo
+  -if photo
+    =link_to photo.file.url do
+      =image_tag photo.file.url(:thumb)
+  -else
+    no photo
