@@ -17,7 +17,10 @@
     initialize: function(target, options) {
       this.options = options;
       this.el = this._createUI(target, options);
-      if(options.rtl) this.el.addClass('rtl');
+      if(options.rtl) {
+        this.el.addClass('rtl');
+        this.el.toggleClass('scrollbarLeft', $.rtlScrollbarPosition() == 'left');
+      }
       this.filesErrorsOnAdd = {};
 
       this.uploader = new plupload.Uploader(options.uploader);

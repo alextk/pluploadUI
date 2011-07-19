@@ -85,3 +85,6 @@ div.pluploadUI.queue {
   div.pluploadUI.queue.rtl div.filesList div.footer a.button {
     margin-left: 0px;
     margin-right: 15px; }
+  div.pluploadUI.queue.rtl.scrollbarLeft div.header, div.pluploadUI.queue.rtl.scrollbarLeft div.footer {
+    padding-right: 5px;
+    padding-left: 22px; }

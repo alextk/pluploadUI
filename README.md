@@ -4,7 +4,8 @@
 Dependencies
 -------------------
 jQuery
-jqI18n for localization
+jqI18n plugin (for localization)
+rtlScrollbarPosition plugin (for queue ui)
 
 Usage
 ---------------------
