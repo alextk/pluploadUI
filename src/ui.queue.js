@@ -17,6 +17,7 @@
     initialize: function(target, options) {
       this.options = options;
       this.el = this._createUI(target, options);
+      if(options.rtl) this.el.addClass('rtl');
       this.filesErrorsOnAdd = {};
 
       this.uploader = new plupload.Uploader(options.uploader);
@@ -53,7 +54,7 @@
                 '</div>' +
                 '<div class="complete">' +
                   '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.success')+'</span> ' +
-                  '<span class="uploaded"/>' +
+                  '<span class="uploaded"/> ' +
                   '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.clear')+'</a>' +
                 '</div>'+
                 '<div class="stopped">' +
@@ -150,7 +151,7 @@
           else if(err.code == plupload.FILE_SIZE_ERROR){
             message = $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code), {size: plupload.formatSize(err.file.size), max: plupload.formatSize(up.settings.max_file_size)});
           }
-          if(message == null){
+          if(message === null){
             message = $.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message;
           }
 

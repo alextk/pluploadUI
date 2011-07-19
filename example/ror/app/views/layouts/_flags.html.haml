@@ -1,0 +1,6 @@
+%ul.flags
+  -I18n.available_locales.each do |locale|
+    -url_hash = request.path_parameters.delete_if{|k,v| k=='locale'}.update(:locale=>locale.to_s)
+    %li
+      =link_to url_hash, :class=>"flag #{locale == I18n.locale ? 'selected' : ''}", :onclick=>"#{'alert("Language can not be changed in this screen");return false;' unless request.get?}" do
+        =image_tag("flags/#{locale}.png")

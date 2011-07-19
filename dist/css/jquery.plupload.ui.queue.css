@@ -74,3 +74,14 @@ div.pluploadUI.queue {
     color: #bbbbbb;
     border-color: #bbbbbb;
     cursor: default; }
+  div.pluploadUI.queue.rtl div.choose div.button {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0px; }
+  div.pluploadUI.queue.rtl div.filesList div.header div.name, div.pluploadUI.queue.rtl div.filesList div.file div.name, div.pluploadUI.queue.rtl div.filesList div.footer div.name {
+    float: right; }
+  div.pluploadUI.queue.rtl div.filesList div.header div.size, div.pluploadUI.queue.rtl div.filesList div.header div.progress, div.pluploadUI.queue.rtl div.filesList div.file div.size, div.pluploadUI.queue.rtl div.filesList div.file div.progress, div.pluploadUI.queue.rtl div.filesList div.footer div.size, div.pluploadUI.queue.rtl div.filesList div.footer div.progress {
+    float: left; }
+  div.pluploadUI.queue.rtl div.filesList div.footer a.button {
+    margin-left: 0px;
+    margin-right: 15px; }

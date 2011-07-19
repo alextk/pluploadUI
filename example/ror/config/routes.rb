@@ -1,15 +1,17 @@
 Ror::Application.routes.draw do
 
-  devise_for :accounts
+  root :to => 'examples#index', :locale => 'en-US'
 
-  root :to => "examples#index"
+  scope '(/:locale)', :locale => /en-US|he-IL/ do
+    devise_for :accounts
 
-  resources :photos, :only => [:index, :create, :destroy]
-  resource :single, :controller => :single, :only => [:show]
-  resource :queue, :controller => :queue, :only => [:show]
+    #root :to => "examples#index"
 
-  resources :examples, :only => [:index] do
-    get :single, :queue, :on => :collection
+    resources :photos, :only => [:index, :create, :destroy]
+    resource :single, :controller => :single, :only => [:show]
+    resource :queue, :controller => :queue, :only => [:show]
+
+    resources :examples, :only => [:index]
   end
 
   # The priority is based upon order of creation:

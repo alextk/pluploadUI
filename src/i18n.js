@@ -10,6 +10,6 @@
 
   $.pluploadUI.errorCodeToI18nKey = function(code){
     return errorCodesToI18nKey[code];
-  }
+  };
 
 })(jQuery);

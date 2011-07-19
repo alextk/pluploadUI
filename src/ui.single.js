@@ -9,6 +9,7 @@
     initialize: function(target, options) {
       this.options = options;
       this.el = this._createUI(target, options);
+      if(options.rtl) this.el.addClass('rtl');
 
       this.uploader = new plupload.Uploader(options.uploader);
       this._initUploadListeners();
@@ -19,13 +20,13 @@
       var divUploader = $(
         '<div id="' + options.container.id + '" class="pluploadUI singleFile">' +
           '<div class="messages">' +
-            '<div class="message intro">' + $.pluploadUI.i18n.t('messages.intro') + '</div>' +
+            '<div class="message intro">' + $.pluploadUI.i18n.t('single.messages.intro') + '</div>' +
             '<div class="message uploading">' +
-              '<span class="icon">' + $.pluploadUI.i18n.t('messages.uploading') + '</span>' +
+              '<span class="icon">' + $.pluploadUI.i18n.t('single.messages.uploading') + '</span>' +
               '<span class="percent"/>' +
             '</div>' +
             '<div class="message error"/>' +
-            '<div class="message success">' + $.pluploadUI.i18n.t('messages.success') + '</div>' +
+            '<div class="message success">' + $.pluploadUI.i18n.t('single.messages.success') + '</div>' +
           '</div>' +
           '<div class="choose">' +
             '<div id="' + options.browse.id + '" class="button">' + $.pluploadUI.i18n.t('browseButton.text') + '</div>' +
@@ -81,7 +82,7 @@
         else if(err.code == plupload.FILE_SIZE_ERROR){
           message = $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code), {size: plupload.formatSize(err.file.size), max: plupload.formatSize(up.settings.max_file_size)});
         }
-        if(message == null){
+        if(message === null){
           message = $.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message;
         }
         self._showMessage('error', message);

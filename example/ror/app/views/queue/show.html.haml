@@ -1,5 +1,6 @@
 -content_for :head do
   =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}.rtl" if t('language_direction')=='rtl'
 
 %h1 Multiple file uploader queue
 
@@ -9,6 +10,9 @@
     -@project.photos.each do |photo|
       =render :partial => 'photo', :locals => {:photo => photo}
     %div.end.clear
+
+:javascript
+  $.pluploadUI.i18n.locale('#{I18n.locale}');
 
 -['gears', 'silverlight', 'flash', 'html5', 'browserplus'].each do |runtime|
   %div.runtime{:class => runtime}

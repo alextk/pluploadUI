@@ -8,7 +8,7 @@
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: Mon Jul 18 14:57:56 2011 +0300
+* Date: Mon Jul 18 18:33:51 2011 +0300
 */
 
 (function($) {
@@ -79,7 +79,7 @@
 
   $.pluploadUI.errorCodeToI18nKey = function(code){
     return errorCodesToI18nKey[code];
-  }
+  };
 
 })(jQuery);
 (function($) {
@@ -93,6 +93,7 @@
     initialize: function(target, options) {
       this.options = options;
       this.el = this._createUI(target, options);
+      if(options.rtl) this.el.addClass('rtl');
 
       this.uploader = new plupload.Uploader(options.uploader);
       this._initUploadListeners();
@@ -103,13 +104,13 @@
       var divUploader = $(
         '<div id="' + options.container.id + '" class="pluploadUI singleFile">' +
           '<div class="messages">' +
-            '<div class="message intro">' + $.pluploadUI.i18n.t('messages.intro') + '</div>' +
+            '<div class="message intro">' + $.pluploadUI.i18n.t('single.messages.intro') + '</div>' +
             '<div class="message uploading">' +
-              '<span class="icon">' + $.pluploadUI.i18n.t('messages.uploading') + '</span>' +
+              '<span class="icon">' + $.pluploadUI.i18n.t('single.messages.uploading') + '</span>' +
               '<span class="percent"/>' +
             '</div>' +
             '<div class="message error"/>' +
-            '<div class="message success">' + $.pluploadUI.i18n.t('messages.success') + '</div>' +
+            '<div class="message success">' + $.pluploadUI.i18n.t('single.messages.success') + '</div>' +
           '</div>' +
           '<div class="choose">' +
             '<div id="' + options.browse.id + '" class="button">' + $.pluploadUI.i18n.t('browseButton.text') + '</div>' +
@@ -165,7 +166,7 @@
         else if(err.code == plupload.FILE_SIZE_ERROR){
           message = $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code), {size: plupload.formatSize(err.file.size), max: plupload.formatSize(up.settings.max_file_size)});
         }
-        if(message == null){
+        if(message === null){
           message = $.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message;
         }
         self._showMessage('error', message);
@@ -242,6 +243,7 @@
     initialize: function(target, options) {
       this.options = options;
       this.el = this._createUI(target, options);
+      if(options.rtl) this.el.addClass('rtl');
       this.filesErrorsOnAdd = {};
 
       this.uploader = new plupload.Uploader(options.uploader);
@@ -278,7 +280,7 @@
                 '</div>' +
                 '<div class="complete">' +
                   '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.success')+'</span> ' +
-                  '<span class="uploaded"/>' +
+                  '<span class="uploaded"/> ' +
                   '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.clear')+'</a>' +
                 '</div>'+
                 '<div class="stopped">' +
@@ -375,7 +377,7 @@
           else if(err.code == plupload.FILE_SIZE_ERROR){
             message = $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code), {size: plupload.formatSize(err.file.size), max: plupload.formatSize(up.settings.max_file_size)});
           }
-          if(message == null){
+          if(message === null){
             message = $.pluploadUI.errorCodeToI18nKey(err.code) ? $.pluploadUI.i18n.t($.pluploadUI.errorCodeToI18nKey(err.code)) : err.message;
           }
 

@@ -15,3 +15,14 @@ body {
     padding: 10px;
     background-color: #90ee90;
     color: #333333; }
+  body ul.flags {
+    padding: 0px; }
+    body ul.flags li {
+      display: inline;
+      margin: 0px 2px; }
+      body ul.flags li a.flag {
+        text-decoration: none; }
+        body ul.flags li a.flag img {
+          border: 2px solid transparent; }
+        body ul.flags li a.flag.selected img {
+          border-color: orange; }
