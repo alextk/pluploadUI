@@ -8,7 +8,7 @@
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: Tue Jul 19 12:09:51 2011 +0300
+* Date: Tue Jul 19 13:03:31 2011 +0300
 */
 
 (function($) {
@@ -104,16 +104,16 @@
       var divUploader = $(
         '<div id="' + options.container.id + '" class="pluploadUI singleFile">' +
           '<div class="messages">' +
-            '<div class="message intro">' + $.pluploadUI.i18n.t('single.messages.intro') + '</div>' +
+            '<div class="message intro">' + (options.messages.intro || $.pluploadUI.i18n.t('single.messages.intro')) + '</div>' +
             '<div class="message uploading">' +
-              '<span class="icon">' + $.pluploadUI.i18n.t('single.messages.uploading') + '</span>' +
+              '<span class="icon">' + (options.messages.uploading || $.pluploadUI.i18n.t('single.messages.uploading')) + '</span>' +
               '<span class="percent"/>' +
             '</div>' +
             '<div class="message error"/>' +
-            '<div class="message success">' + $.pluploadUI.i18n.t('single.messages.success') + '</div>' +
+            '<div class="message success">' + (options.messages.success || $.pluploadUI.i18n.t('single.messages.success')) + '</div>' +
           '</div>' +
           '<div class="choose">' +
-            '<div id="' + options.browse.id + '" class="button">' + $.pluploadUI.i18n.t('browseButton.text') + '</div>' +
+            '<div id="' + options.browse.id + '" class="button">' + (options.browse.text || $.pluploadUI.i18n.t('browseButton.text')) + '</div>' +
             '<div class="info"/>' +
             '<div class="clear"/>' +
           '</div>' +
@@ -221,6 +221,11 @@
   $.fn.pluploadUI.types.single.defaults = {
     uploader: {
       multi_selection: false
+    },
+    messages: {
+      intro: null,
+      uploading: null,
+      success: null
     }
   };
 

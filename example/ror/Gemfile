@@ -11,6 +11,10 @@ gem 'devise'
 
 gem 'sqlite3'
 
+group :development do
+ gem 'mongrel'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -33,3 +37,4 @@ gem 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
