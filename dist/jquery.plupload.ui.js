@@ -8,7 +8,7 @@
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: Tue Jul 19 13:03:31 2011 +0300
+* Date: Wed Jul 27 13:36:38 2011 +0300
 */
 
 (function($) {
@@ -204,10 +204,14 @@
     },
 
     _showMessage: function(type, newContents){
+      var self = this;
       jQuery('div.messages div.message', this.el).each(function(){
         var div = $(this);
         div.toggle(div.hasClass(type));
-        if(newContents && div.hasClass(type)) div.html(newContents);
+        if(newContents && div.hasClass(type)){
+          div.html(newContents);
+          self.uploader.refresh();
+        }
       });
     },
 
