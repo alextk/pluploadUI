@@ -29,7 +29,7 @@
             '<div class="message success">' + (options.messages.success || $.pluploadUI.i18n.t('single.messages.success')) + '</div>' +
           '</div>' +
           '<div class="choose">' +
-            '<div id="' + options.browse.id + '" class="button">' + (options.browse.text || $.pluploadUI.i18n.t('browseButton.text')) + '</div>' +
+            '<div id="' + options.browse.id + '" class="button">' + (options.browse.text || $.pluploadUI.i18n.t('single.buttons.browse')) + '</div>' +
             '<div class="info"/>' +
             '<div class="clear"/>' +
           '</div>' +

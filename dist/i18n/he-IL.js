@@ -1,7 +1,4 @@
 $.pluploadUI.i18n.register('he-IL', {
-  browseButton: {
-    text: 'בחירת קובץ'
-  },
   errors: {
     io: 'התרחשה שגיאת שרת. נא לנסות מאוחר יותר.',
     init: 'לא ניתן לאחתל אף runtime',
@@ -9,6 +6,9 @@ $.pluploadUI.i18n.register('he-IL', {
     fileExtension: 'סיומת קובץ אינה מורשת'
   },
   single: {
+    buttons: {
+      browse: 'בחירת קובץ'
+    },
     messages: {
       intro: 'לחץ על הכפתור לבחירת קובץ להעלאה',
       uploading: 'שולח קובץ...',
@@ -16,6 +16,13 @@ $.pluploadUI.i18n.register('he-IL', {
     }
   },
   queue: {
+    buttons: {
+      browse: 'בחירת קבצים',
+      stop: 'עצירה',
+      clear: 'ניקוי',
+      resume: 'המשך',
+      start: 'התחלה'
+    },
     header: {
       name: 'שם קובץ',
       size: 'גודל',
@@ -27,11 +34,7 @@ $.pluploadUI.i18n.register('he-IL', {
       stopped: 'העלאה נעצרה.'
     },
     footer: {
-      uploaded: 'הועלו %{uploaded}/%{total} קבצים',
-      stop: 'עצירה',
-      clear: 'ניקוי',
-      resume: 'המשך',
-      start: 'התחלה'
+      uploaded: 'הועלו %{uploaded}/%{total} קבצים'
     }
   }
 });

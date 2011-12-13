@@ -1,7 +1,4 @@
 $.pluploadUI.i18n.register('en-US', {
-  browseButton: {
-    text: 'Choose file'
-  },
   errors: {
     io: 'Server error occured. Please try again later',
     init: 'No runtime could be initialized',
@@ -9,6 +6,9 @@ $.pluploadUI.i18n.register('en-US', {
     fileExtension: 'File extension is not allowed'
   },
   single: {
+    buttons: {
+      browse: 'Choose file'
+    },
     messages: {
       intro: 'Click on button to upload file',
       uploading: 'Uploading files...',
@@ -16,6 +16,13 @@ $.pluploadUI.i18n.register('en-US', {
     }
   },
   queue: {
+    buttons: {
+      browse: 'Choose files',
+      stop: 'Stop',
+      clear: 'Clear completed',
+      resume: 'Resume',
+      start: 'Start'
+    },
     header: {
       name: 'File name',
       size: 'Size',
@@ -27,11 +34,7 @@ $.pluploadUI.i18n.register('en-US', {
       stopped: 'Upload stopped.'
     },
     footer: {
-      uploaded: 'Uploaded %{uploaded}/%{total} files',
-      stop: 'Stop',
-      clear: 'Clear completed',
-      resume: 'Resume',
-      start: 'Start'
+      uploaded: 'Uploaded %{uploaded}/%{total} files'
     }
   }
 });

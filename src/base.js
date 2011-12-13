@@ -42,7 +42,7 @@
   //global defaults (will be overriden by type class defaults and then overriden by user config)
   $.fn.pluploadUI.defaults = {
     type: 'single',
-    browse: {text: 'Choose file'},
+    browse: {},
     uploader: {
       dragdrop: false,
       multi_selection: true,

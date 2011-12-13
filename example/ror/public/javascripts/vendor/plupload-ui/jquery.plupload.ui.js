@@ -8,7 +8,7 @@
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: Wed Jul 27 13:36:38 2011 +0300
+* Date: Wed Jul 27 15:14:04 2011 +0300
 */
 
 (function($) {
@@ -55,7 +55,7 @@
   //global defaults (will be overriden by type class defaults and then overriden by user config)
   $.fn.pluploadUI.defaults = {
     type: 'single',
-    browse: {text: 'Choose file'},
+    browse: {},
     uploader: {
       dragdrop: false,
       multi_selection: true,
@@ -113,7 +113,7 @@
             '<div class="message success">' + (options.messages.success || $.pluploadUI.i18n.t('single.messages.success')) + '</div>' +
           '</div>' +
           '<div class="choose">' +
-            '<div id="' + options.browse.id + '" class="button">' + (options.browse.text || $.pluploadUI.i18n.t('browseButton.text')) + '</div>' +
+            '<div id="' + options.browse.id + '" class="button">' + (options.browse.text || $.pluploadUI.i18n.t('single.buttons.browse')) + '</div>' +
             '<div class="info"/>' +
             '<div class="clear"/>' +
           '</div>' +
@@ -268,7 +268,7 @@
         '<div class="pluploadUI queue">' +
           '<div class="noruntime"/>' +
           '<div id="' + options.container.id + '" class="choose">' +
-            '<div id="' + options.browse.id + '" class="button">' + $.pluploadUI.i18n.t('browseButton.text') + '</div>' +
+            '<div id="' + options.browse.id + '" class="button">' + $.pluploadUI.i18n.t('queue.buttons.browse') + '</div>' +
             '<div class="info"/>' +
             '<div class="clear"/>' +
           '</div>' +
@@ -284,22 +284,22 @@
             '<div class="footer">' +
               '<div class="name">' +
                 '<div class="start">' +
-                  '<a class="button start" href="javascript:;" style="display: none">'+$.pluploadUI.i18n.t('queue.footer.start')+'</a>' +
+                  '<a class="button start" href="javascript:;" style="display: none">'+$.pluploadUI.i18n.t('queue.buttons.start')+'</a>' +
                 '</div>' +
                 '<div class="uploading">' +
                   '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.uploading')+'</span> ' +
-                  '<a class="button stop" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.stop')+'</a>' +
+                  '<a class="button stop" href="javascript:;">'+$.pluploadUI.i18n.t('queue.buttons.stop')+'</a>' +
                 '</div>' +
                 '<div class="complete">' +
                   '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.success')+'</span> ' +
                   '<span class="uploaded"/> ' +
-                  '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.clear')+'</a>' +
+                  '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.buttons.clear')+'</a>' +
                 '</div>'+
                 '<div class="stopped">' +
                   '<span class="status">'+$.pluploadUI.i18n.t('queue.messages.stopped')+'</span> ' +
                   '<span class="uploaded"/>' +
-                  '<a class="button resume" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.resume')+'</a>' +
-                  '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.footer.clear')+'</a>' +
+                  '<a class="button resume" href="javascript:;">'+$.pluploadUI.i18n.t('queue.buttons.resume')+'</a>' +
+                  '<a class="button clear" href="javascript:;">'+$.pluploadUI.i18n.t('queue.buttons.clear')+'</a>' +
                 '</div>'+
               '</div>'+
               '<div class="progress">0%</div>' +
