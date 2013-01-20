@@ -1,10 +1,16 @@
 (function($) {
 
-  $.pluploadUI = { };
+  var apiKey = 'pluploadUIAPI';
+
+  $.pluploadUI = {
+    api: function(id){
+      return $('#'+id).pluploadUI('api');
+    }
+  };
 
   $.fn.pluploadUI = function(options) {
     if (options == 'api') {
-      return this.data('api');
+      return this.data(apiKey);
     } else {
       if ($.type(options) === "object") {
 
@@ -22,6 +28,7 @@
 
           //create separate configuration for this instance
           var config = $.extend(true, {
+            debugEnabled: false,
             rtl: $this.css('direction') == 'rtl',
             container: {id: plupload.guid()},
             browse: {id: plupload.guid()}
@@ -29,8 +36,9 @@
 
           config.uploader.container = config.container.id; //id of the container relative to which browse button overlay will be positioned (by plupload)
           config.uploader.browse_button = config.browse.id; //id of the browse button (over which overlay will be positioned)
+          config.uploader.url += (config.uploader.url.indexOf('?') == -1 ? '?plupload_id=' : '&plupload_id=') + config.container.id;
 
-          $this.data('api', new uiTypeClass($this, config));
+          $this.data(apiKey, new uiTypeClass($this, config));
         });
       }
       return this;

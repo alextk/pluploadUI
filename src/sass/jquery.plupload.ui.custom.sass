@@ -1,0 +1,24 @@
+div.pluploadUI.singleFileCustomUI
+  div.plupload
+    direction: ltr
+
+  [data-uirole=idle_message], [data-uirole=success_message], [data-uirole=error_message], [data-uirole=uploading_message]
+    display: none
+
+  [data-uirole=debug_message]
+    display: none
+    display: block
+    border: 1px solid #aaa
+    padding: 10px
+    color: #777
+
+  &.disabled
+    [data-uirole=chooser]
+      cursor: not-allowed
+      opacity: 0.5
+
+  &.noRuntimeAvailable
+    [data-uirole=chooser]
+      display: none
+
+  &.rtl

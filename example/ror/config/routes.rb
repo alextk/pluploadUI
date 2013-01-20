@@ -9,6 +9,9 @@ Ror::Application.routes.draw do
 
     resources :photos, :only => [:index, :create, :destroy]
     resource :single, :controller => :single, :only => [:show]
+    resource :custom, :controller => :custom, :only => [:show] do
+      post :upload_photo
+    end
     resource :queue, :controller => :queue, :only => [:show]
 
     resources :examples, :only => [:index]

@@ -1,0 +1,14 @@
+div.runtime {
+  border-bottom: 1px dashed #333333;
+  padding-bottom: 20px; }
+  div.runtime div.photo {
+    float: left;
+    margin: 0px 10px;
+    padding: 10px;
+    border: 1px solid orange;
+    width: 80px; }
+  div.runtime div.custom_uploader {
+    float: left;
+    width: 400px; }
+    div.runtime div.custom_uploader [data-uirole=error_message] {
+      color: red; }

@@ -10,7 +10,7 @@
   <%= javascript_include_tag 'vendor/plupload/plupload.full', 'vendor/jquery.i18n', 'vendor/jquery.rtl-scrollbar-position' %>
   <%= javascript_include_tag 'vendor/plupload-ui/jquery.plupload.ui', 'vendor/plupload-ui/i18n/en-US', 'vendor/plupload-ui/i18n/he-IL' %>
 
-  <%= stylesheet_link_tag 'vendor/plupload-ui/jquery.plupload.ui.single', 'vendor/plupload-ui/jquery.plupload.ui.queue' %>
+  <%= stylesheet_link_tag 'vendor/plupload-ui/jquery.plupload.ui.single', 'vendor/plupload-ui/jquery.plupload.ui.custom', 'vendor/plupload-ui/jquery.plupload.ui.queue' %>
 
   <%= csrf_meta_tag %>
   
@@ -31,6 +31,8 @@
   <%= link_to 'Home', root_path %>
   |
   <%= link_to 'Single upload', single_path %>
+  |
+  <%= link_to 'Custom upload', custom_path %>
   |
   <%= link_to 'Multi upload queue', queue_path %>
 </div>

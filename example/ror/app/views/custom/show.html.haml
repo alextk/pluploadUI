@@ -1,0 +1,34 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}.rtl" if t('language_direction')=='rtl'
+
+%h1 Custom UI file uploader
+
+:javascript
+  $.pluploadUI.i18n.locale('#{I18n.locale}');
+
+-['gears', 'silverlight', 'flash', 'html5', 'browserplus'].each do |runtime|
+  %div.runtime{:class => runtime}
+    %h3=runtime
+    =render :partial => 'photo', :locals => {:photo => @article.photo}
+    %div.custom_uploader
+      =link_to 'javascript:;', :class => 'btn', 'data-uirole'=>:chooser do
+        ='Choose file'
+      %div.states
+        %div.state{'data-uirole'=>:idle_message}
+          max file size
+          =number_to_human_size(2.megabytes)
+          allowed file types: jpg, gif, png, jpeg
+        %div.state{'data-uirole'=>:success_message} Okie dokie
+        %div.state{'data-uirole'=>:error_message}
+          %span{'data-uirole'=>:placeholder}
+        %div.state{'data-uirole'=>:uploading_message}
+          =image_tag 'spinner-10x10.gif'
+          uploading...
+          %span{'data-uirole'=>:percent_placeholder}
+      %div.debug{'data-uirole'=>:debug_message}
+
+      =javascript_tag do
+        =render :partial => 'plupload_custom.js', :locals => {:runtime => runtime}
+    %div.clear
+

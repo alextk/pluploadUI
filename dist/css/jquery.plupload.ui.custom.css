@@ -1,0 +1,15 @@
+div.pluploadUI.singleFileCustomUI div.plupload {
+  direction: ltr; }
+div.pluploadUI.singleFileCustomUI [data-uirole=idle_message], div.pluploadUI.singleFileCustomUI [data-uirole=success_message], div.pluploadUI.singleFileCustomUI [data-uirole=error_message], div.pluploadUI.singleFileCustomUI [data-uirole=uploading_message] {
+  display: none; }
+div.pluploadUI.singleFileCustomUI [data-uirole=debug_message] {
+  display: none;
+  display: block;
+  border: 1px solid #aaaaaa;
+  padding: 10px;
+  color: #777777; }
+div.pluploadUI.singleFileCustomUI.disabled [data-uirole=chooser] {
+  cursor: not-allowed;
+  opacity: 0.5; }
+div.pluploadUI.singleFileCustomUI.noRuntimeAvailable [data-uirole=chooser] {
+  display: none; }

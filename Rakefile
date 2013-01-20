@@ -10,7 +10,7 @@ project = JsProjectBuilder.new(
   :name => 'pluploadUI',
   :description => 'jQuery plugin for plupload ui widgets',
   :file_name => 'jquery.plupload.ui.js',
-  :js_files => %w{base.js i18n.js ui.single.js ui.queue.js},
+  :js_files => %w{base.js i18n.js ui.single.js ui.custom.js ui.queue.js},
   :sass => true
 )
 JsProjectBuilder::Tasks.new(project)
