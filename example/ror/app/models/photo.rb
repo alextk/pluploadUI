@@ -10,6 +10,6 @@ class Photo < ActiveRecord::Base
 
   validates_attachment_presence :file
   validates_attachment_content_type :file, :content_type => [/image\/jpg/, /image\/jpeg/, /image\/pjpeg/, /image\/gif/, /image\/png/, /image\/x-png/, /image\/bmp/]
-  validates_attachment_size :file, :less_than => 2.megabytes, :message => 'must be less than 2mb'
+  validates_attachment_size :file, :less_than => 100.kilobytes, :message => 'must be less than 2mb'
 
 end

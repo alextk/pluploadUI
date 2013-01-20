@@ -1,9 +1,13 @@
-var api = $.pluploadUI.api('<%= params[:plupload_id] %>');
 <% if @photo.errors.any? %>
-  api.onUploadError("<%= @photo.errors.full_messages.uniq.join(',') %>");
+  result = {
+    state: 'error',
+    message: "<%= @photo.errors.full_messages.uniq.join(',') %>"
+  };
 <% else %>
-  api.onUploadSuccess(function(){
-    console.info('success');
-    jQuery('div.photo.article').replaceWith("<%= escape_javascript(render(:partial => "single/photo", :locals => {:photo => @photo})) %>");
-  });
+  result = {
+    state: 'ok',
+    callback: function(){
+      jQuery('div.photo.article').replaceWith("<%= escape_javascript(render(:partial => "single/photo", :locals => {:photo => @photo})) %>");
+    }
+  };
 <% end %>

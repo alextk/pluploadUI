@@ -70,26 +70,26 @@
           self.el.addClass('disabled');
         } else if (uploader.state === plupload.STOPPED){
           self.el.removeClass('disabled');
+          up.trigger("DisableBrowse", false);
         }
       });
 
       uploader.bind('FileUploaded', function(up, file, response) {
         self.debugMessage('FileUploaded: ' + file.name + ', response:' + response);
         var evalResult = eval(response.response);
-        self.debugMessage('FileUploaded: ' + file.name + ', evalResult:' + evalResult);
-        if(evalResult && evalResult.error === true){ //ERROR
+        self.debugMessage('FileUploaded: ' + file.name + ', evalResult.state:' + evalResult.state);
+        if(evalResult.state == 'ok'){
+          self._showMessage('success');
+          if(evalResult.callback instanceof Function) evalResult.callback.call(self, file);
+        } else{  //ERROR
           file.status = plupload.FAILED;
           self._showMessage('error', evalResult.message);
-        }
-
-        if(file.status == plupload.DONE){ //SUCCESS: upload completed ok
-          self._showMessage('success');
+          if(evalResult.callback instanceof Function) evalResult.callback.call(self, file);
         }
       });
 
       uploader.bind('UploadComplete', function(up, file) {
         self.el.removeClass('working');
-        up.trigger("DisableBrowse", false);
       });
 
       uploader.bind("UploadProgress", function(up, file) {
@@ -112,15 +112,6 @@
 
     debugMessage: function(message){
       if(this.options.debugEnabled) this.el.find('[data-uirole=debug_message]').append($('<div></div>').html(message));
-    },
-
-    onUploadSuccess: function(callback){
-      this._showMessage('success');
-      if(callback instanceof Function) callback.call(this);
-    },
-
-    onUploadError: function(message){
-      this._showMessage('error', message);
     }
 
   });
