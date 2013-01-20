@@ -2,14 +2,14 @@
 * pluploadUI - jQuery plugin for plupload ui widgets
 *
 * Version: 0.0.1
-* Build: 48
+* Build: 50
 * Copyright 2011 Alex Tkachev
 *
 * Dual licensed under MIT or GPLv2 licenses
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: 20 Jan 2013 17:25:22
+* Date: 20 Jan 2013 17:46:23
 */
 
 (function($) {
@@ -307,10 +307,11 @@
         self._showMessage('error', message);
       });
 
-      uploader.bind('StateChanged', function() {
+      uploader.bind('StateChanged', function(up) {
         self.debugMessage('StateChanged: ' + uploader.state);
         if (uploader.state === plupload.STARTED) {
           self._showMessage('uploading');
+          up.trigger("DisableBrowse", true);
           self.el.addClass('disabled');
         } else if (uploader.state === plupload.STOPPED){
           self.el.removeClass('disabled');
@@ -333,6 +334,7 @@
 
       uploader.bind('UploadComplete', function(up, file) {
         self.el.removeClass('working');
+        up.trigger("DisableBrowse", false);
       });
 
       uploader.bind("UploadProgress", function(up, file) {

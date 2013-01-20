@@ -62,10 +62,11 @@
         self._showMessage('error', message);
       });
 
-      uploader.bind('StateChanged', function() {
+      uploader.bind('StateChanged', function(up) {
         self.debugMessage('StateChanged: ' + uploader.state);
         if (uploader.state === plupload.STARTED) {
           self._showMessage('uploading');
+          up.trigger("DisableBrowse", true);
           self.el.addClass('disabled');
         } else if (uploader.state === plupload.STOPPED){
           self.el.removeClass('disabled');
@@ -88,6 +89,7 @@
 
       uploader.bind('UploadComplete', function(up, file) {
         self.el.removeClass('working');
+        up.trigger("DisableBrowse", false);
       });
 
       uploader.bind("UploadProgress", function(up, file) {
